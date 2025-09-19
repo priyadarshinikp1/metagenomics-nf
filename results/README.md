@@ -1,1 +1,1 @@
-Placeholder for ChocoPhlan database
+Main outputs will be saved here
