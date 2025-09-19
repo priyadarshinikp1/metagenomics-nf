@@ -1,1 +1,1 @@
-Placeholder for ChocoPhlan database
+Downstream output files will be placed here
