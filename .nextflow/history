@@ -1,4 +1,0 @@
-2025-09-18 17:26:29	2.1s	gloomy_newton	ERR	4a7f120df9af31a164a71d59e3d15e4b	369f7a79-0028-4988-b517-051a5ed3bd3d	nextflow run down.nf --samples_csv ./samples_down.csv
-2025-09-18 17:34:28	18.8s	gloomy_babbage	OK	4a7f120df9af31a164a71d59e3d15e4b	e4e644cf-2eb6-48de-b444-20339939dadd	nextflow run down.nf -c nextflow.down.config --samples_csv ./samples_down.csv
-2025-09-18 17:42:20	8.7s	big_carlsson	ERR	4a7f120df9af31a164a71d59e3d15e4b	48407a28-f934-4fb8-a7a6-9da9c2c64f9e	nextflow run down.nf -c nextflow.down.config --samples_csv ./samples_down.csv
-2025-09-18 17:46:42	16.1s	small_euler	OK	4764919e7c63754a924f109155a3996b	9ed2dde3-65ce-4998-9410-90872033d03b	nextflow run down.nf -c nextflow.down.config --samples_csv ./samples_down.csv
