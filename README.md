@@ -1,4 +1,3 @@
----
 # Shotgun Metagenomics Workflow (metagenomics-nf)
 
 This repository contains a Nextflow-based pipeline for shotgun metagenomic analysis. It supports taxonomic profiling and functional profiling using HUMAnN3, with configuration files, sample manifests, environment settings and downstream steps.
@@ -31,7 +30,7 @@ This repository contains a Nextflow-based pipeline for shotgun metagenomic analy
    ```bash
    git clone https://github.com/priyadarshinikp1/metagenomics-nf.git
    cd metagenomics-nf
-````
+   ```
 
 2. **Install environment**
 
@@ -42,7 +41,7 @@ This repository contains a Nextflow-based pipeline for shotgun metagenomic analy
    conda activate metagenomics_env
    ```
 
-   Make sure all required tools (Nextflow, HUMAnN3, Kraken2, Bracken, FastQC etc.) are available via this environment.
+   Make sure all required tools (**Nextflow, HUMAnN3, Kraken2, Bracken, FastQC** etc.) are available via this environment.
 
 3. **Configure sample files and parameters**
 
@@ -92,12 +91,12 @@ This will likely generate summary tables, plots, reports, etc., based on outputs
 
 You can expect your pipeline to produce (depending on which modules are enabled):
 
-* Taxonomic profiles (e.g. classification outputs, abundance tables)
-* Functional profiles (gene families, pathways via HUMAnN3)
-* Joined/normalized tables
-* Quality control reports
-* Visualizations (plots, etc.)
-* Downstream analyses summaries
+* **Taxonomic profiles** (e.g. classification outputs, abundance tables)
+* **Functional profiles** (gene families, pathways via HUMAnN3)
+* **Joined/normalized tables**
+* **Quality control reports**
+* **Visualizations** (plots, etc.)
+* **Downstream analyses summaries**
 
 These will reside under `results/` and/or `downstream_results/`, as per your config.
 
