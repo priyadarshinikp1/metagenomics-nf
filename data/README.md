@@ -1,1 +1,1 @@
-Placeholder for ChocoPhlan database
+Placeholder for INPUT DATA FILES
