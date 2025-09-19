@@ -1,6 +1,4 @@
 ---
-
-````markdown
 # Shotgun Metagenomics Workflow (metagenomics-nf)
 
 This repository contains a Nextflow-based pipeline for shotgun metagenomic analysis. It supports taxonomic profiling and functional profiling using HUMAnN3, with configuration files, sample manifests, environment settings and downstream steps.
