@@ -1,0 +1,173 @@
+---
+title: "Microbiome Analysis Report"
+author: "Priyadarshini K"
+date: "`r Sys.Date()`"
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
+params:
+  patient_name: "P009712"
+  output_dir: "./P009712"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE,
+  fig.width = 8,
+  fig.height = 6,
+  out.width = '80%'
+)
+library(readr)
+library(readxl)
+library(dplyr)
+library(knitr)
+library(data.table)
+library(knitr)
+library(kableExtra)
+library(ggplot2)
+
+# -----------------------------
+# Parameters
+# -----------------------------
+patient_name <- params$patient_name
+base_dir <- params$output_dir
+
+# -----------------------------
+# Helper functions
+# -----------------------------
+# Robust helper to load files
+load_file <- function(patient_id, suffix) {
+  # Top-level folder
+  path1 <- file.path(base_dir, paste0(patient_id, suffix))
+  # Nested folder
+  path2 <- file.path(base_dir, patient_id, paste0(patient_id, suffix))
+
+  if (file.exists(path1)) return(path1)
+  if (file.exists(path2)) return(path2)
+  # Return path1 anyway for warning
+  return(path1)
+}
+
+# Safe plotting helper
+safe_plot <- function(filepath) {
+  if (file.exists(filepath)) {
+    knitr::include_graphics(filepath)
+  } else {
+    cat("Image not available:", filepath, "\n")
+  }
+}
+```
+
+
+# Patient Information
+
+**Patient ID:** `r params$patient_name`  
+**Report Date:** `r Sys.Date()`  
+
+\newpage
+
+# Kraken2 Taxonomy Reports
+```{r kraken, echo=FALSE}
+kraken_file <- load_file(patient_name, ".kraken2.report")
+
+
+if (file.exists(kraken_file)) {
+  load_kraken_report <- function(filepath, sample_name) {
+    df <- fread(filepath, header = FALSE, sep = "\t")
+    colnames(df) <- c("Percent", "Reads_Clade", "Reads_Direct", "Rank", "TaxID", "Name")
+    df$Sample <- sample_name
+    return(df)
+  }
+
+  sample_df  <- load_kraken_report(kraken_file, "Patient")
+
+  kable(head(sample_df, 10), caption = "Top 10 entries from patient Kraken2 report")
+} else {
+  cat("Kraken2 report not found for patient:", patient_name, "\n")
+}
+```
+## Krona Plot
+```{r krona, echo=FALSE}
+safe_plot(load_file(patient_name, "_krona.png"))
+```
+\newpage
+
+# Differential Abundance Analysis
+```{r da, echo=FALSE}
+da_file <- load_file(patient_name, "_Differentially_Abundant_Microbes.xlsx")
+if (file.exists(da_file)) {
+  da <- read_xlsx(da_file)
+  kable(head(da, 10), caption = "Top Differentially Abundant Microbes")
+} else {
+  cat("No differential abundance results for patient:", patient_name, "\n")
+}
+
+```
+## Volcano Plot
+```{r volcano, echo=FALSE}
+safe_plot(load_file(patient_name, "_VolcanoPlot.png"))
+```
+
+### Top 10 Species in Patient Sample
+```{r topspecies, echo=FALSE}
+safe_plot(load_file(patient_name, "_Top10_Patient_Species.png"))
+```
+
+### Top 10 Species: Patient vs Control
+```{r pc, echo=FALSE}
+safe_plot(load_file(patient_name, "_Top10_Patient_vs_Control.png"))
+```
+\newpage
+
+# Microbe Gene Rank Interaction Network Table
+```{r rank, echo=FALSE}
+rank_csv <- load_file(patient_name, "_Microbe_Gene_RankSimilarity.csv")
+if (file.exists(rank_csv)) {
+  rank_df <- read_csv(rank_csv, show_col_types = FALSE)
+  rank_top <- rank_df %>% arrange(desc(RankSimilarity)) %>% head(10)
+  kable(rank_top, caption = "Top 10 Microbe–Gene Rank Similarities")
+} else {
+  cat("No rank similarity file found for patient:", patient_name, "\n")
+}
+
+```
+## Microbe Gene Rank Interaction Network
+```{r rankplot, echo=FALSE}
+safe_plot(load_file(patient_name, "_Microbe_Gene_rank_network.png"))
+```
+\newpage
+
+# Diversity
+## Alpha Diversity
+```{r adiv, echo=FALSE}
+safe_plot(load_file(patient_name, "_AlphaDiversity.png"))
+```
+
+## Beta Diversity
+```{r bdiv, echo=FALSE}
+safe_plot(load_file(patient_name, "_BetaDiversity.png"))
+```
+\newpage
+
+# Microbe-Metabolite_Gene_Disease Interaction
+```{r mmgd, echo=FALSE}
+safe_plot(load_file(patient_name, "_top_microbe_metabolite_gene_disease_network.png"))
+```
+
+## Microbe-Metabolite_Gene_Disease Interaction Table
+```{r mmgdplot, echo=FALSE}
+gutm_csv <- load_file(patient_name, "_microbe_metabolite_gene_disease_network.csv")
+if (file.exists(gutm_csv)) {
+  gutm_df <- read_csv(gutm_csv, show_col_types = FALSE)
+  gutm_top <- gutm_df %>% head(10)
+  kable(gutm_top, caption = "Top 10 Microbe–Metabolite–Gene–Disease Interactions")
+} else {
+  cat("No MMGD interactions file found for patient:", patient_name, "\n")
+}
+
+```
+

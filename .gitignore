@@ -1,0 +1,19 @@
+# Ignore Nextflow work directories
+work/
+results/
+downstream_results/
+
+# Ignore input data and databases
+data/
+databases/
+
+# Ignore conda envs or temporary files
+.env/
+*.log
+*.tmp
+
+# Ignore big CSVs (optional, keep only example ones)
+samples_down.csv
+sample_humann.csv
+sample_taxo.csv
+samples.csv

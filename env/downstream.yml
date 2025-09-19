@@ -1,0 +1,38 @@
+name: downstream
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  # Python
+  - python=3.10
+  - pandas
+  - networkx
+  - pyvis
+  - plotly
+  - openpyxl
+  - seaborn
+  - matplotlib
+  - jinja2
+  - gprofiler-official
+  - pip
+  - pip:
+      - dash_bio   # needed by mmgd_downstream.py
+
+  # R base + essentials
+  - r-base=4.3
+  - r-essentials
+  - r-tidyverse
+  - r-data.table
+  - r-writexl
+  - r-readxl
+  - r-igraph
+  - r-visnetwork
+  - r-htmlwidgets
+  - r-stringr
+  - r-vegan
+  - r-pheatmap
+  - r-rmarkdown
+  - r-knitr
+  - r-patchwork
+  - r-kableextra

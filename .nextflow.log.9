@@ -1,0 +1,75 @@
+Sep-18 13:53:14.308 [main] DEBUG nextflow.cli.Launcher - $> nextflow run main2_down.nf --samples_csv ./samples_down.csv -resume
+Sep-18 13:53:14.406 [main] DEBUG nextflow.cli.CmdRun - N E X T F L O W  ~  version 24.10.6
+Sep-18 13:53:14.417 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/home/priyadarshini/.nextflow/plugins; core-plugins: nf-amazon@2.9.3,nf-azure@1.10.2,nf-cloudcache@0.4.2,nf-codecommit@0.2.2,nf-console@1.1.4,nf-google@1.15.4,nf-tower@1.9.3,nf-wave@1.7.5
+Sep-18 13:53:14.426 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Sep-18 13:53:14.426 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Sep-18 13:53:14.428 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.12.0 in 'deployment' mode
+Sep-18 13:53:14.434 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Sep-18 13:53:14.445 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /home/priyadarshini/metagenomics_nf/nextflow.config
+Sep-18 13:53:14.446 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /home/priyadarshini/metagenomics_nf/nextflow.config
+Sep-18 13:53:14.457 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /home/priyadarshini/.nextflow/secrets/store.json
+Sep-18 13:53:14.458 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@773e2eb5] - activable => nextflow.secret.LocalSecretsProvider@773e2eb5
+Sep-18 13:53:14.464 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
+Sep-18 13:53:14.667 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declaration
+Sep-18 13:53:14.675 [main] DEBUG nextflow.cli.CmdRun - Launching `main2_down.nf` [agitated_avogadro] DSL2 - revision: 12cb76da32
+Sep-18 13:53:14.675 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Sep-18 13:53:14.675 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
+Sep-18 13:53:14.707 [main] DEBUG nextflow.Session - Session UUID: e20993bb-a7bc-4eca-a1b3-e6967aa4d1f2
+Sep-18 13:53:14.707 [main] DEBUG nextflow.Session - Run name: agitated_avogadro
+Sep-18 13:53:14.708 [main] DEBUG nextflow.Session - Executor pool size: 256
+Sep-18 13:53:14.711 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+Sep-18 13:53:14.714 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=768; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Sep-18 13:53:14.725 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 24.10.6 build 5937
+  Created: 23-04-2025 16:53 UTC 
+  System: Linux 5.15.0-143-generic
+  Runtime: Groovy 4.0.23 on OpenJDK 64-Bit Server VM 11.0.27+6
+  Encoding: UTF-8 (UTF-8)
+  Process: 1416065@chi-mi325x-pod1-002.ord.vultr.cpe.ice.amd.com [127.0.1.1]
+  CPUs: 256 - Mem: 2.9 TB (2.5 TB) - Swap: 8 GB (8 GB)
+Sep-18 13:53:14.750 [main] DEBUG nextflow.Session - Work-dir: /home/priyadarshini/metagenomics_nf/work [nfs]
+Sep-18 13:53:14.751 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /home/priyadarshini/metagenomics_nf/bin
+Sep-18 13:53:14.756 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Sep-18 13:53:14.760 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Sep-18 13:53:14.771 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Sep-18 13:53:14.776 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 257; maxThreads: 1000
+Sep-18 13:53:14.825 [main] DEBUG nextflow.Session - Session start
+Sep-18 13:53:15.105 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Sep-18 13:53:15.185 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Sep-18 13:53:15.185 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Sep-18 13:53:15.188 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+Sep-18 13:53:15.191 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=256; memory=2.9 TB; capacity=256; pollInterval=100ms; dumpInterval=5m
+Sep-18 13:53:15.192 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
+Sep-18 13:53:15.221 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Sep-18 13:53:15.221 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Sep-18 13:53:15.228 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Sep-18 13:53:15.228 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Sep-18 13:53:15.234 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Sep-18 13:53:15.234 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Sep-18 13:53:15.237 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+Sep-18 13:53:15.237 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Sep-18 13:53:15.239 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: final_report, mmgd_downstream, rank_network, microbiome_analysis, mmgd_mapping
+Sep-18 13:53:15.240 [main] DEBUG nextflow.Session - Igniting dataflow network (6)
+Sep-18 13:53:15.245 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > microbiome_analysis
+Sep-18 13:53:15.245 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > rank_network
+Sep-18 13:53:15.245 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > mmgd_mapping
+Sep-18 13:53:15.246 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > mmgd_downstream
+Sep-18 13:53:15.247 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > final_report
+Sep-18 13:53:15.249 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Script_9eb093e2f89aa826: /home/priyadarshini/metagenomics_nf/main2_down.nf
+Sep-18 13:53:15.250 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+Sep-18 13:53:15.250 [main] DEBUG nextflow.Session - Session await
+Sep-18 13:53:15.350 [Actor Thread 16] INFO  nextflow.processor.TaskProcessor - [37/edda28] Cached process > microbiome_analysis (P0022)
+Sep-18 13:53:15.380 [Actor Thread 16] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'PublishDir' minSize=10; maxSize=768; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Sep-18 13:53:15.380 [Actor Thread 23] INFO  nextflow.processor.TaskProcessor - [a8/d3f736] Cached process > final_report (P0022)
+Sep-18 13:53:15.383 [Actor Thread 29] INFO  nextflow.processor.TaskProcessor - [bf/d41558] Cached process > rank_network (P0022)
+Sep-18 13:53:15.387 [Actor Thread 31] INFO  nextflow.processor.TaskProcessor - [97/0ab055] Cached process > mmgd_mapping (P0022)
+Sep-18 13:53:15.406 [Actor Thread 50] INFO  nextflow.processor.TaskProcessor - [60/dc91ff] Cached process > mmgd_downstream (P0022)
+Sep-18 13:53:15.408 [main] DEBUG nextflow.Session - Session await > all processes finished
+Sep-18 13:53:15.497 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local) - terminating tasks monitor poll loop
+Sep-18 13:53:15.497 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Sep-18 13:53:15.499 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'PublishDir' shutdown completed (hard=false)
+Sep-18 13:53:15.502 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=0; failedCount=0; ignoredCount=0; cachedCount=5; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=0ms; failedDuration=0ms; cachedDuration=1m 17s;loadCpus=0; loadMemory=0; peakRunning=0; peakCpus=0; peakMemory=0; ]
+Sep-18 13:53:15.655 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+Sep-18 13:53:15.669 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'FileTransfer' shutdown completed (hard=false)
+Sep-18 13:53:15.669 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye
