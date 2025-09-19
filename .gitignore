@@ -2,14 +2,34 @@
 work/
 results/
 downstream_results/
-
+.nextflow/
 # Ignore input data and databases
-data/
-databases/
+
+# Ignore all files in databases (real data)
+databases/*
+
+# Track only README.md placeholders in subfolders
+!databases/**/README.md
+
+data/*
+!data/**/README.md
+
+downstream_results/*
+!downstream_results/**/README.md
+
+results/*
+!results/**/README.md
+# Vim/Editor swap files
+*.swp
+*.swo
+
+# Temporary files from NFS
+.nfs*
 
 # Ignore conda envs or temporary files
 .env/
 *.log
+*.log.*
 *.tmp
 
 # Ignore big CSVs (optional, keep only example ones)
