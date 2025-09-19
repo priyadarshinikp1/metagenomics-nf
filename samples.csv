@@ -1,0 +1,2 @@
+sample_id,fastq_r1,fastq_r2
+P0022,./data/P001_22_ST_S73_R1_001.fastq.gz,./data/P001_22_ST_S73_R2_001.fastq.gz

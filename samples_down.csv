@@ -1,0 +1,9 @@
+﻿patient_id,kraken2,bracken,genefamilies,control_kraken2,control_bracken,krona
+P0015,./results/kraken2/P0015.kraken2.report,./results/bracken/P0015.bracken.species,./results/humann_out/P0015_genefamilies.tsv,./results/kraken2/control.kraken2.report,./results/bracken/control.bracken.species,./downstream_results/P0015_krona.png
+P0016,./results/kraken2/P0016.kraken2.report,./results/bracken/P0016.bracken.species,./results/humann_out/P0016_genefamilies.tsv,./results/kraken2/control.kraken2.report,./results/bracken/control.bracken.species,./downstream_results/P0016_krona.png
+P0017,./results/kraken2/P0017.kraken2.report,./results/bracken/P0017.bracken.species,./results/humann_out/P0017_genefamilies.tsv,./results/kraken2/control.kraken2.report,./results/bracken/control.bracken.species,./downstream_results/P0017_krona.png
+P0018,./results/kraken2/P0018.kraken2.report,./results/bracken/P0018.bracken.species,./results/humann_out/P0018_genefamilies.tsv,./results/kraken2/control.kraken2.report,./results/bracken/control.bracken.species,./downstream_results/P0018_krona.png
+P0019,./results/kraken2/P0019.kraken2.report,./results/bracken/P0019.bracken.species,./results/humann_out/P0019_genefamilies.tsv,./results/kraken2/control.kraken2.report,./results/bracken/control.bracken.species,./downstream_results/P0019_krona.png
+P0020,./results/kraken2/P0020.kraken2.report,./results/bracken/P0020.bracken.species,./results/humann_out/P0020_genefamilies.tsv,./results/kraken2/control.kraken2.report,./results/bracken/control.bracken.species,./downstream_results/P0020_krona.png
+P0021,./results/kraken2/P0021.kraken2.report,./results/bracken/P0021.bracken.species,./results/humann_out/P0021_genefamilies.tsv,./results/kraken2/control.kraken2.report,./results/bracken/control.bracken.species,./downstream_results/P0021_krona.png
+

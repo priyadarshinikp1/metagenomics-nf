@@ -1,0 +1,3 @@
+sample_id,r1,r2
+p975,./results/kneaddata_cleaned/p975_cleaned_paired_1.fastq.gz,./results/kneaddata_cleaned/p975_cleaned_paired_2.fastq.gz
+P006,./results/kneaddata_cleaned/P006_cleaned_paired_1.fastq.gz,./results/kneaddata_cleaned/P006_cleaned_paired_2.fastq.gz

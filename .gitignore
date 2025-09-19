@@ -32,8 +32,3 @@ results/*
 *.log.*
 *.tmp
 
-# Ignore big CSVs (optional, keep only example ones)
-samples_down.csv
-sample_humann.csv
-sample_taxo.csv
-samples.csv
