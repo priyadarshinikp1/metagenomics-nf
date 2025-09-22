@@ -93,7 +93,7 @@ process download_metaphlan_markers {
     script:
     """
     echo "[INFO] Downloading MetaPhlAn markers DB..."
-    metaphlan --install .
+    metaphlan --install --index mpa_v30_CHOCOPhlAn_201901 .
     """
 }
 
