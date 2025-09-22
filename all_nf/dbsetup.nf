@@ -48,7 +48,7 @@ process build_bracken {
     publishDir "${params.kraken2_db}", mode: 'copy'
 
     input:
-    path kraken2_db from download_kraken2.out
+    path kraken2_db
 
     output:
     path "database${params.bracken_read_len}mers.kmer_distrib"
