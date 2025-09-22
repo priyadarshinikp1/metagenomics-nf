@@ -4,3 +4,5 @@
 - Kraken2 
 - Chocophlan
 - Uniref
+
+**Place GutMGene Reference files here aswell for downstream analysis**
