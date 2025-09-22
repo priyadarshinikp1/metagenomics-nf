@@ -14,7 +14,7 @@ process download_kneaddata {
     script:
     """
     echo "[INFO] Checking Kneaddata DB..."
-    if [ -d "${params.kneaddata_db}" ] && [ "$(ls -A ${params.kneaddata_db})" ]; then
+    if [ -d "${params.kneaddata_db}" ] && [ "\$(ls -A ${params.kneaddata_db})" ]; then
         echo "[INFO] Kneaddata DB already exists. Skipping download."
     else
         echo "[INFO] Downloading Kneaddata DB (${params.kneaddata_db_type})..."
@@ -33,7 +33,7 @@ process download_kraken2 {
     script:
     """
     echo "[INFO] Checking Kraken2 DB..."
-    if [ -d "${params.kraken2_db}" ] && [ "$(ls -A ${params.kraken2_db})" ]; then
+    if [ -d "${params.kraken2_db}" ] && [ "\$(ls -A ${params.kraken2_db})" ]; then
         echo "[INFO] Kraken2 DB already exists. Skipping download."
     else
         echo "[INFO] Downloading Kraken2 DB..."
@@ -81,7 +81,7 @@ process download_humann_chocophlan {
     script:
     """
     echo "[INFO] Checking HUMAnN3 ChocoPhlAn DB..."
-    if [ -d "${params.humann_chocophlan_db}" ] && [ "$(ls -A ${params.humann_chocophlan_db})" ]; then
+    if [ -d "${params.humann_chocophlan_db}" ] && [ "\$(ls -A ${params.humann_chocophlan_db})" ]; then
         echo "[INFO] ChocoPhlAn DB already exists. Skipping download."
     else
         echo "[INFO] Downloading HUMAnN3 ChocoPhlAn DB..."
@@ -100,7 +100,7 @@ process download_humann_uniref {
     script:
     """
     echo "[INFO] Checking HUMAnN3 UniRef90 DB..."
-    if [ -d "${params.humann_uniref_db}" ] && [ "$(ls -A ${params.humann_uniref_db})" ]; then
+    if [ -d "${params.humann_uniref_db}" ] && [ "\$(ls -A ${params.humann_uniref_db})" ]; then
         echo "[INFO] UniRef90 DB already exists. Skipping download."
     else
         echo "[INFO] Downloading HUMAnN3 UniRef90 DB..."
@@ -122,7 +122,7 @@ process download_metaphlan_markers {
     script:
     """
     echo "[INFO] Checking MetaPhlAn markers DB..."
-    if [ -d "${params.metaphlan_db}" ] && [ "$(ls -A ${params.metaphlan_db})" ]; then
+    if [ -d "${params.metaphlan_db}" ] && [ "\$(ls -A ${params.metaphlan_db})" ]; then
         echo "[INFO] MetaPhlAn DB already exists. Skipping download."
     else
         echo "[INFO] Downloading MetaPhlAn markers DB..."
