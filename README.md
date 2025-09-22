@@ -44,6 +44,7 @@ This repository contains a Nextflow-based pipeline for shotgun metagenomic analy
    Make sure all required tools (**Nextflow, HUMAnN3, Kraken2, Bracken, FastQC** etc.) are available via this environment.
    ```bash
    conda install nextflow
+   nextflow -version
    ```
 
 4. **Configure sample files and parameters**
