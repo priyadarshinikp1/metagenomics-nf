@@ -28,8 +28,8 @@ This repository contains a Nextflow-based pipeline for shotgun metagenomic analy
 1. **Clone this repo**
 
    ```bash
-   git clone https://github.com/priyadarshinikp1/metagenomics-nf.git
-   cd metagenomics-nf
+   git clone https://github.com/priyadarshinikp1/metagenomics_nf.git
+   cd metagenomics_nf
    ```
 
 2. **Install environment**
