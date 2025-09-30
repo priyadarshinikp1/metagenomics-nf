@@ -237,7 +237,7 @@ process run_humann {
     script:
 
     """
-    humann --input $merged --output ./ --threads ${task.cpus} --metaphlan-options "--bowtie2db ${params.metaphlan_db}"
+    humann --input $merged --output ./ --threads ${task.cpus} --metaphlan-options "--bowtie2db ${params.metaphlan_db} --index mpa_v30_CHOCOPhlAn_201901"
     mv ${sample_id}_merged_genefamilies.tsv ${sample_id}_genefamilies.tsv
     mv ${sample_id}_merged_pathabundance.tsv ${sample_id}_pathabundance.tsv
     rm $merged
