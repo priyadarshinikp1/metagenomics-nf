@@ -30,7 +30,7 @@ process fastqc_raw {
 }
 
 // ----------------------
-// 2. Fastp trimming
+// 2. fastp trimming
 // ----------------------
 process fastp {
     tag "$sample_id"
@@ -83,25 +83,7 @@ process fastqc_clean {
 }
 
 // ----------------------
-// 4. MultiQC
-// ----------------------
-process multiqc {
-    publishDir "${params.outdir}/multiqc", mode: 'copy'
-
-    input:
-    path reports
-
-    output:
-    path "multiqc_report.html"
-
-    script:
-    """
-    multiqc ${reports.join(' ')} -o ./ -n multiqc_report.html
-    """
-}
-
-// ----------------------
-// 5. Host Read Removal (Kneaddata)
+// 5. Host Read Removal (KneadData)
 // ----------------------
 process kneaddata {
     tag "$sample_id"
@@ -128,6 +110,46 @@ process kneaddata {
 
     gzip ${sample_id}_cleaned_paired_1.fastq
     gzip ${sample_id}_cleaned_paired_2.fastq
+    """
+}
+
+// ----------------------
+// X. FastQ Screen (on KneadData-cleaned reads)  HTML only
+// ----------------------
+process fastq_screen {
+    tag "$sample_id"
+    publishDir "${params.fastq_screen_outdir}", mode: 'copy'
+
+    input:
+    tuple val(sample_id), path(r1), path(r2)
+
+    output:
+    tuple val(sample_id),
+          path("${sample_id}_cleaned_paired_1_screen.html"),
+          path("${sample_id}_cleaned_paired_2_screen.html"),
+          path("${sample_id}_cleaned_paired_1_screen.png"),
+          path("${sample_id}_cleaned_paired_2_screen.png")
+
+
+    script:
+    """
+    set -euo pipefail
+
+    # Run fastq_screen on R1
+    fastq_screen \
+      --aligner ${params.fastq_screen_aligner} \
+      --conf ${params.fastq_screen_conf} \
+      --threads ${params.fastq_screen_threads} \
+      --outdir ./ \
+      $r1
+
+    # Run fastq_screen on R2
+    fastq_screen \
+      --aligner ${params.fastq_screen_aligner} \
+      --conf ${params.fastq_screen_conf} \
+      --threads ${params.fastq_screen_threads} \
+      --outdir ./ \
+      $r2
     """
 }
 
@@ -235,9 +257,9 @@ process run_humann {
           path("${sample_id}_pathabundance.tsv")
 
     script:
-
     """
-    humann --input $merged --output ./ --threads ${task.cpus} --metaphlan-options "--bowtie2db ${params.metaphlan_db} --index mpa_v30_CHOCOPhlAn_201901"
+    humann --input $merged --output ./ --threads ${task.cpus} --bypass-translated-search --metaphlan-options "--bowtie2db ${params.metaphlan_db} --index mpa_v30_CHOCOPhlAn_201901"
+
     mv ${sample_id}_merged_genefamilies.tsv ${sample_id}_genefamilies.tsv
     mv ${sample_id}_merged_pathabundance.tsv ${sample_id}_pathabundance.tsv
     rm $merged
@@ -245,7 +267,7 @@ process run_humann {
 }
 
 // ----------------------
-// 11. HUMAnN3 postprocessing
+// 11. HUMAnN3 postprocessing (optional)
 // ----------------------
 process humann_postprocessing {
     cpus = 4
@@ -277,14 +299,14 @@ workflow {
     raw_reports   = fastqc_raw(reads_ch)
     trimmed       = fastp(reads_ch)
     clean_reports = fastqc_clean(trimmed.map { tuple(it[0], it[1], it[2]) })
-    all_reports   = raw_reports.zip
-                     .mix(clean_reports.zip)
-                     .mix(trimmed.map { it[3] })
-    multiqc(all_reports)
 
     // 2. Host removal
     cleaned = kneaddata(trimmed.map { tuple(it[0], it[1], it[2]) })
 
+    // 2b. FastQ Screen strictly after KneadData
+    fqscreen = fastq_screen(cleaned)
+
+ 
     // 3. Taxonomy profiling
     kraken_results = kraken2(cleaned)
     bracken_input  = kraken_results.map { sample_id, kraken_out, kraken_report -> tuple(sample_id, kraken_report) }
@@ -296,7 +318,6 @@ workflow {
     merged_reads   = merge_reads(cleaned)
     humann_results = run_humann(merged_reads)
 
-    // Postprocess HUMAnN3 results
-    humann_postprocessing(humann_results.collect())
+    // 5. Postprocess HUMAnN3 (optional)
+    // humann_postprocessing(humann_results.collect())
 }
-
