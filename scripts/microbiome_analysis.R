@@ -66,7 +66,8 @@ control_df <- load_kraken_report(control_file, "Control")
 # 4. Combine, Filter for Species-Level & Compute log2FC
 # =========================================================
 species_df <- bind_rows(sample_df, control_df) %>%
-  filter(Rank == "S") %>%
+  #filter(Rank == "S") %>%
+  filter(Rank %in% c("S", "G")) %>%
   select(Sample, Name, Reads_Clade) %>%
   pivot_wider(names_from = Sample, values_from = Reads_Clade, values_fill = 0)
 
@@ -85,16 +86,28 @@ patient_diff_abundant <- significant_microbes %>%
 
 write_xlsx(patient_diff_abundant, file.path(outdir, paste0(patient_name, "_Differentially_Abundant_Microbes.xlsx")))
 
-# Volcano Plot
-volcano_df <- significant_microbes %>% mutate(pseudo_pval=1/(Patient+1), negLog10P=-log10(pseudo_pval))
-volcano_file <- file.path(outdir, paste0(patient_name, "_VolcanoPlot.png"))
-volcano_plot <- ggplot(volcano_df, aes(x=log2FoldChange, y=negLog10P, label=Name)) +
-  geom_point(color="#e41a1c", size=3, alpha=0.7) +
-  geom_text(check_overlap=TRUE, vjust=-0.8, size=3) +
-  labs(x="log2(Fold Change, Patient vs Control)", y="-log10(Pseudo p-value)", title="Volcano Plot") +
-  theme(plot.title=element_text(hjust=0.5))
-ggsave(volcano_file, volcano_plot, width=8, height=6, dpi=300)
 
+# =========================================================
+# Heatmap (Patient vs Control)
+# Use log10(count+1); show top 30 by total abundance.
+# =========================================================
+top_hm <- 30
+hm_df <- species_df %>%
+  mutate(Total = Patient + Control) %>%
+  arrange(desc(Total)) %>%
+  slice_head(n = top_hm) %>%
+  select(Name, Patient, Control) %>%
+  column_to_rownames("Name")
+
+# Transform for visualization
+hm_mat <- log10(as.matrix(hm_df) + 1)
+
+pheatmap(hm_mat,
+         filename = file.path(outdir, paste0(patient_name, "_heatmap_top", top_hm, ".png")),
+         width = 6, height = 8, dpi = 300,
+         main = paste0("Top ", top_hm, " taxa (log10 counts)"),
+         cluster_rows = TRUE, cluster_cols = FALSE,
+         color = colorRampPalette(c("#f7fbff", "#6baed6", "#08306b"))(100))
 # =========================================================
 # 5. Top Species Analysis
 # =========================================================
