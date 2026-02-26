@@ -1,0 +1,6 @@
+#####main
+nextflow run main.nf -c nextflow.main.config --samples_csv ./samples_down.csv
+#####downstream
+nextflow run down.nf -c nextflow.down.config --samples_csv ./samples_down.csv
+bash scripts/copy.sh samples_down.csv
+bash scripts/generate_reports.sh downstream_results/ samples_down.csv
