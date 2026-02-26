@@ -70,6 +70,15 @@ safe_plot <- function(filepath) {
 
 \newpage
 
+## fastq-screen decontamination QC R1
+```{r fastq-screenr1, echo=FALSE}
+safe_plot(load_file(patient_name, "_cleaned_paired_1_screen.png"))
+```
+## fastq-screen decontamination QC R2
+```{r fastq-screenr2, echo=FALSE}
+safe_plot(load_file(patient_name, "_cleaned_paired_2_screen.png"))
+```
+
 # Kraken2 Taxonomy Reports
 ```{r kraken, echo=FALSE}
 kraken_file <- load_file(patient_name, ".kraken2.report")
@@ -107,9 +116,9 @@ if (file.exists(da_file)) {
 }
 
 ```
-## Volcano Plot
+## Heatmap
 ```{r volcano, echo=FALSE}
-safe_plot(load_file(patient_name, "_VolcanoPlot.png"))
+safe_plot(load_file(patient_name, "_heatmap_top30.png"))
 ```
 
 ### Top 10 Species in Patient Sample
